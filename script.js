@@ -171,7 +171,48 @@ wishForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Tampilkan petunjuk bahwa ucapan dimoderasi.
-// Daftar ucapan yang disetujui belum diambil dari Google Sheets.
-wishesList.innerHTML =
-  '<p class="muted">Terima kasih atas doa dan ucapan Anda. Ucapan akan ditampilkan setelah disetujui oleh kedua mempelai.</p>';
+
+async function loadApprovedWishes() {
+  wishesList.textContent = "Memuat ucapan dan doa...";
+
+  try {
+    const response = await fetch(
+      API_URL + "?action=wishes",
+      { method: "GET" }
+    );
+
+    const data = await response.json();
+
+    if (!data.ok) {
+      throw new Error(data.message || "Gagal memuat ucapan.");
+    }
+
+    wishesList.replaceChildren();
+
+    if (!data.wishes || data.wishes.length === 0) {
+      wishesList.textContent =
+        "Belum ada ucapan yang disetujui.";
+      return;
+    }
+
+    data.wishes.forEach(function(wish) {
+      const card = document.createElement("div");
+      card.className = "wish-card";
+
+      const name = document.createElement("h3");
+      name.textContent = wish.nama;
+
+      const message = document.createElement("p");
+      message.textContent = wish.ucapan;
+
+      card.append(name, message);
+      wishesList.appendChild(card);
+    });
+  } catch (err) {
+    console.error("Gagal memuat ucapan:", err);
+    wishesList.textContent =
+      "Ucapan belum dapat dimuat. Silakan coba lagi.";
+  }
+}
+
+loadApprovedWishes();
