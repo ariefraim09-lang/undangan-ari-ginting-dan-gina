@@ -13,6 +13,8 @@ const cover = $("#cover");
 const main = $("#mainContent");
 const music = $("#bgMusic");
 const musicToggle = $("#musicToggle");
+music.volume = 1;
+music.muted = false;
 
 $("#openInvitation")?.addEventListener("click", async () => {
   document.body.classList.remove("locked");
