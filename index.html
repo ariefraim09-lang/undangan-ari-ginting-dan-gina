@@ -97,14 +97,67 @@
 
     <section class="gallery section">
       <p class="eyebrow">Our Gallery</p>
-      <h2>Potret Kebersamaan</h2>
-      <div class="gallery-grid">
-        <button class="gallery-item wide" data-src="galeri-01-v3.jpg"><img src="galeri-01-v3.jpg" alt="Galeri Ari dan Gina 1"></button>
-        <button class="gallery-item tall" data-src="galeri-02-v3.jpg"><img src="galeri-02-v3.jpg" alt="Galeri Ari dan Gina 2"></button>
-        <button class="gallery-item tall" data-src="galeri-03-v3.jpg"><img src="galeri-03-v3.jpg" alt="Galeri Ari dan Gina 3"></button>
-        <button class="gallery-item" data-src="galeri-04-v3.jpg"><img src="galeri-04-v3.jpg" alt="Galeri Ari dan Gina 4"></button>
-        <button class="gallery-item wide" data-src="galeri-05-v3.jpg"><img src="galeri-05-v3.jpg" alt="Galeri Ari dan Gina 5"></button>
-        <button class="gallery-item tall" data-src="galeri-06-v3.jpg"><img src="galeri-06-v3.jpg" alt="Galeri Ari dan Gina 6"></button>
+     ```css
+/* GALERI FOTO ARI & GINA */
+.gallery {
+  padding: 50px 16px;
+  text-align: center;
+}
+
+.gallery h2 {
+  margin: 10px 0 25px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5eee8;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    padding: 35px 12px;
+  }
+
+  .gallery-grid {
+    gap: 8px;
+  }
+
+  .gallery-item {
+    border-radius: 8px;
+  }
+}
+```
       </div>
     </section>
 
